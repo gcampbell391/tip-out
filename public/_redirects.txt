@@ -1,6 +1,6 @@
 
-/welcome /welcome
-/*  /   200
+/home   /home
+/*  /  
 
 
 
