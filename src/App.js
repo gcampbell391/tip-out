@@ -1,14 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Router, Route } from 'react-router-dom';
+import history from './history'
+
+import Home from './screens/Home'
+import Welcome from './screens/Welcome'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Tip-Out Coming Soon......</h1>
-      </header>
-    </div>
+    <Router history={history}>
+      <Route exact path="/" render={() => <Welcome />} />
+      <Route exact path="/home" render={() => <Home />} />
+    </Router>
   );
 }
 
