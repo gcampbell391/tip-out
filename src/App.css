@@ -3,10 +3,8 @@
 }
 
 .welcome-screen-flexbox-container{
-  display:flex;
-  align-items: center;
+  text-align: center;
   width: 100%;
-  height:600px;
 }
 
 .welcome-screen-flexbox-left{
@@ -15,8 +13,8 @@
 }
 
 #welcome-screen-logo{
-  width:500px;
-  margin-bottom: 50px;
+  margin-bottom: -20px;
+  margin-top: -30px;
 }
 
 .welcome-screen-flexbox-right{
@@ -32,9 +30,19 @@
   text-align: center;
 }
 
+#welcome-screen-create-link{
+  margin-top: 30px;
+}
+
 #login-form-button{
   margin-top: 20px;
 }
 
+.footer{
+  text-align: center;
+  margin-top: 100px;
+}
 
-
+#footer-issues{
+  padding-bottom: 5px;
+}
