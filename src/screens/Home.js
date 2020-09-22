@@ -26,11 +26,28 @@ const Home = (props) => {
     }
 
     return (
-        <div>
-            <h1>Home</h1>
+        <div className='home-screen'>
+            <div className='home-screen-header'>
+                <div className='home-screen-header-left'>
+                    <img src={require("../images/tipoutLogo.png")} id='home-screen-header-logo' alt='tip out logo' />
+                </div>
+                <div className='home-screen-header-right'>
+                    <Button variant="contained" color="secondary" id='log-out-btn' onClick={handleLogOut}>Log Out</Button>
+                </div>
+            </div>
             <h1>Welcome {props.user.name}</h1>
-            <Button variant="contained" color="secondary" id='log-out-btn' onClick={handleLogOut}>Log Out</Button>
-        </div>
+            <div className='home-screen-middle-flexbox'>
+                <div className='home-screen-middle-flexbox-left'>
+                    <h1>Current Earnings Analytics</h1>
+                </div>
+                <div className='home-screen-middle-flexbox-right'>
+                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >Enter New Shift</Button><br /><br />
+                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >Remove Old Shift</Button><br /><br />
+                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >View All Shifts</Button><br /><br />
+                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
+                </div>
+            </div>
+        </div >
     )
 }
 

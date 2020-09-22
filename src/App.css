@@ -50,3 +50,47 @@
 .sign-up-form{
   text-align: center;
 }
+
+.home-screen{
+  text-align: center;
+}
+
+.home-screen-header{
+  display: flex;
+  justify-content: center;
+  width:100%;
+}
+
+
+#home-screen-header-logo{
+width:180px;
+}
+.home-screen-header-left{
+  width: 50%;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: -20px;
+}
+.home-screen-header-right{
+  width: 50%;
+  text-align: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.home-screen-middle-flexbox{
+  display:flex;
+}
+
+.home-screen-middle-flexbox-left{
+  width:50%;
+}
+
+.home-screen-middle-flexbox-right{
+  width:50%;
+}
+
+.home-screen-tool-btn{
+  width: 200px;
+  
+}
