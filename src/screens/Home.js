@@ -1,11 +1,12 @@
 import React from 'react'
 
+const Home = (props) => {
 
-const Home = () => {
 
     return (
         <div>
             <h1>Home</h1>
+            <h1>Welcome {props.user.name}</h1>
         </div>
     )
 }
