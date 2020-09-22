@@ -7,12 +7,12 @@ import Home from './screens/Home'
 import Welcome from './screens/Welcome'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const store = require('store2')
 
 
 function App() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [user, setUser] = useState(null)
 
   //Handle Email Input Change
   const handleEmailChange = (e) => {
@@ -26,7 +26,6 @@ function App() {
 
   //Handle User Log in
   const handleLogin = () => {
-
     const userData = {
       email: email,
       password: password
@@ -48,30 +47,28 @@ function App() {
         }
         else {
           console.log(data.user)
-          setUser(data.user)
+          store('user', data.user)
           setEmail('')
           setPassword('')
           toast.success("Login Successful", {
             autoClose: 3000,
             pauseOnHover: false
           })
-          setTimeout(() => {
-            toast.success(`Welcome ${data.user.name}`, {
-              autoClose: 3000,
-              pauseOnHover: false
-            })
-          }, 1000)
-          history.push("/home")
         }
       })
   }
 
 
-
+  if (store.get('user') !== null) {
+    history.push("/home")
+  }
+  else {
+    history.push("/")
+  }
   return (
     <Router history={history}>
       <Route exact path="/" render={() => <Welcome handleEmailChange={handleEmailChange} handlePasswordChange={handlePasswordChange} handleLogin={handleLogin} email={email} password={password} />} />
-      <Route exact path="/home" render={() => <Home user={user} />} />
+      <Route exact path="/home" render={() => <Home user={store.get('user')} />} />
       <ToastContainer />
     </Router>
   );
