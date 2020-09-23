@@ -3,6 +3,7 @@ import { Button } from '@material-ui/core';
 import history from '../history';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import TipChart from '../components/TipChart';
 const store = require('store2')
 
 
@@ -35,17 +36,17 @@ const Home = (props) => {
                     <Button variant="contained" color="secondary" id='log-out-btn' onClick={handleLogOut}>Log Out</Button>
                 </div>
             </div>
-            <h1>Welcome {props.user.name}</h1>
-            <div className='home-screen-middle-flexbox'>
-                <div className='home-screen-middle-flexbox-left'>
-                    <h1>Current Earnings Analytics</h1>
-                </div>
-                <div className='home-screen-middle-flexbox-right'>
-                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >Enter New Shift</Button><br /><br />
-                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >Remove Old Shift</Button><br /><br />
-                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >View All Shifts</Button><br /><br />
-                    <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
-                </div>
+            <div className='home-screen-button-container'>
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' >Enter New Shift</Button><br /><br />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' >Remove Old Shift</Button><br /><br />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' >View All Shifts</Button><br /><br />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
+            </div>
+            <div className='home-screen-chart-container'>
+                <TipChart />
+            </div>
+            <div>
+                <h1>Tip Out Earnings Analytics</h1>
             </div>
         </div >
     )

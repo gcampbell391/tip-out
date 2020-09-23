@@ -78,19 +78,18 @@ width:180px;
   margin-top: 10px;
 }
 
-.home-screen-middle-flexbox{
-  display:flex;
-}
-
-.home-screen-middle-flexbox-left{
-  width:50%;
-}
-
-.home-screen-middle-flexbox-right{
-  width:50%;
+.home-screen-button-container{
+  display: flex;
+  justify-content: space-between;
+  width:70%;
+  margin: auto;
 }
 
 .home-screen-tool-btn{
-  width: 200px;
-  
+
 }
+
+.home-screen-chart-container{
+  width:100%;
+}
+
