@@ -4,6 +4,7 @@ import history from '../history';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TipChart from '../components/TipChart';
+import Footer from '../components/Footer';
 const store = require('store2')
 
 
@@ -43,11 +44,12 @@ const Home = (props) => {
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
             </div>
             <div className='home-screen-chart-container'>
-                <TipChart />
+                <TipChart userID={store.get('user').id} />
             </div>
             <div>
-                <h1>Tip Out Earnings Analytics</h1>
+                <h1>Earnings Analytics</h1>
             </div>
+            <Footer />
         </div >
     )
 }
