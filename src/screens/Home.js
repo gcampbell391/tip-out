@@ -33,12 +33,55 @@ const Home = (props) => {
 
     const handleAddShift = () => {
         setAddShiftOpen(true);
-
     }
 
-    const handleCloseAddShift = () => {
-        setAddShiftOpen(false);
-    };
+    const handleAddShiftSubmit = (shiftType, shiftDate, restaurant, shiftHours, shiftTips, shiftComments) => {
+
+        //Validates shiftType
+        if (shiftType === "") {
+            return toast.dark(`Please Enter A Shift Type`, {
+                autoClose: 2000,
+                pauseOnHover: false
+            })
+        }
+        //Converts shiftDate
+        shiftDate = (parseInt(shiftDate.getMonth()) + 1) + "/" + shiftDate.getDate() + "/" + shiftDate.getFullYear().toString().charAt(2) + shiftDate.getFullYear().toString().charAt(3)
+        //Validates restaurant
+        if (restaurant === "") {
+            return toast.dark(`Please Enter A Restaurant`, {
+                autoClose: 2000,
+                pauseOnHover: false
+            })
+        }
+        //Validates shiftHours
+        if (shiftHours === "") {
+            return toast.dark(`Please Enter Shift Hours`, {
+                autoClose: 2000,
+                pauseOnHover: false
+            })
+        }
+        else if (isNaN(parseInt(shiftHours))) {
+            return toast.dark(`Shift Hours Must Be A Numeric Value`, {
+                autoClose: 2000,
+                pauseOnHover: false
+            })
+        }
+        //Validates shiftTips
+        if (shiftTips === "") {
+            return toast.dark(`Please Enter Shift Tips`, {
+                autoClose: 2000,
+                pauseOnHover: false
+            })
+        }
+        else if (isNaN(parseInt(shiftTips))) {
+            return toast.dark(`Shift Tips Must Be A Numeric Value`, {
+                autoClose: 2000,
+                pauseOnHover: false
+            })
+        }
+        console.log(shiftType, shiftDate, restaurant, shiftHours, shiftTips, shiftComments)
+    }
+
 
     return (
         <div className='home-screen'>
@@ -52,7 +95,7 @@ const Home = (props) => {
             </div>
             <div className='home-screen-button-container'>
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={handleAddShift}>Enter New Shift</Button><br /><br />
-                <AddShiftForm open={AddShiftOpen} handleClose={handleCloseAddShift} />
+                <AddShiftForm open={AddShiftOpen} handleClose={() => setAddShiftOpen(false)} handleAddShiftSubmit={handleAddShiftSubmit} handleAddShiftClose={() => setAddShiftOpen(false)} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Remove Old Shift</Button><br /><br />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >View All Shifts</Button><br /><br />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />

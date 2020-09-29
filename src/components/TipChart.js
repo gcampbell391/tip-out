@@ -26,7 +26,6 @@ const TipChart = (props) => {
             })
     }, [props.userID])
 
-    console.log(shifts)
     // const data = [
     //     ['x', 'night', 'day'],
     //     [0, 0, 0],
