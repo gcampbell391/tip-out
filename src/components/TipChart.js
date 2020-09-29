@@ -1,30 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Chart } from "react-google-charts";
 
 
 const TipChart = (props) => {
-
-    const [shifts, setShifts] = useState([['x', 'night', 'day'], ['2/1/20', 0, 0]])
-
-
-    //Fetch user shifts to display in chart
-    useEffect(() => {
-        fetch(`http://localhost:3000/users/${props.userID}`)
-            .then(resp => resp.json())
-            .then(data => {
-                data.shifts.forEach(shift => {
-                    let day = 0
-                    let night = 0
-                    if (shift.shift_type === "day") {
-                        day = shift.pay_total
-                    }
-                    else {
-                        night = shift.pay_total
-                    }
-                    setShifts(shifts => [...shifts, [shift.shift_date, parseInt(night), parseInt(day)]])
-                })
-            })
-    }, [props.userID])
 
     // const data = [
     //     ['x', 'night', 'day'],
@@ -44,7 +22,7 @@ const TipChart = (props) => {
                 height={'500px'}
                 chartType="ScatterChart"
                 loader={<div>Loading Chart</div>}
-                data={shifts}
+                data={props.shifts}
                 options={{
                     animation: {
                         duration: 1000,

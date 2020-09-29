@@ -42,6 +42,16 @@ const AddShiftForm = (props) => {
     const [shiftType, setShiftType] = useState("")
     const [shiftComments, setShiftComments] = useState("")
 
+    const handleAddShiftSubmit = () => {
+        props.handleAddShiftSubmit(shiftType, shiftDate, restaurant, shiftHours, shiftTipTotal, shiftComments)
+        setRestaurant("")
+        setShiftDate(new Date())
+        setShiftHours("")
+        setShiftTipTotal("")
+        setShiftType("")
+        setShiftComments("")
+    }
+
     return (
         <div>
             <Modal
@@ -91,7 +101,7 @@ const AddShiftForm = (props) => {
                             <TextField id="standard-basic" label="Shift Hours" required value={shiftHours} onChange={event => setShiftHours(event.target.value)} /><br />
                             <TextField id="standard-basic" label="Total Tips" required value={shiftTipTotal} onChange={event => setShiftTipTotal(event.target.value)} /><br />
                             <TextField id="standard-basic" label="Comments" helperText="optional" value={shiftComments} onChange={event => setShiftComments(event.target.value)} /><br />
-                            <Button variant="contained" color="primary" id='login-form-button' onClick={() => props.handleAddShiftSubmit(shiftType, shiftDate, restaurant, shiftHours, shiftTipTotal, shiftComments)}  >Add Shift</Button> <Button variant="contained" color="secondary" id='login-form-close-button' onClick={props.handleAddShiftClose}>X</Button>
+                            <Button variant="contained" color="primary" id='login-form-button' onClick={handleAddShiftSubmit}  >Add Shift</Button> <Button variant="contained" color="secondary" id='login-form-close-button' onClick={props.handleAddShiftClose}>X</Button>
                         </form>
                     </div>
                 </Fade>

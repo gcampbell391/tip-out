@@ -11,13 +11,33 @@ const store = require('store2')
 
 const Home = (props) => {
 
+    const [shifts, setShifts] = useState([['x', 'night', 'day'], ['2/1/20', 0, 0]])
     const [AddShiftOpen, setAddShiftOpen] = useState(false)
 
+    //Fetch user shifts to display in chart
     useEffect(() => {
         toast.dark(`Welcome Back ${store.get('user').name}`, {
             autoClose: 3000,
             pauseOnHover: false
         })
+        let userID = store.get('user').id
+        fetch(`http://localhost:3000/users/${userID}`)
+            .then(resp => resp.json())
+            .then(data => {
+                //Sort array by dates before looping through each
+
+                data.shifts.forEach(shift => {
+                    let day = 0
+                    let night = 0
+                    if (shift.shift_type === "day") {
+                        day = shift.pay_total
+                    }
+                    else {
+                        night = shift.pay_total
+                    }
+                    setShifts(shifts => [...shifts, [shift.shift_date, parseInt(night), parseInt(day)]])
+                })
+            })
     }, [])
 
     const handleLogOut = () => {
@@ -79,7 +99,42 @@ const Home = (props) => {
                 pauseOnHover: false
             })
         }
-        console.log(shiftType, shiftDate, restaurant, shiftHours, shiftTips, shiftComments)
+        const newShift = {
+            userID: store.get('user').id,
+            employment_place: restaurant,
+            shift_date: shiftDate,
+            shift_type: shiftType,
+            shift_hours: shiftHours,
+            pay_total: shiftTips,
+            shift_comments: shiftComments
+        }
+        console.log(newShift)
+        fetch('http://localhost:3000/add_shift', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newShift),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setAddShiftOpen(false)
+                let day = 0
+                let night = 0
+                if (data.newShift.shift_type === "day") {
+                    day = data.newShift.pay_total
+                }
+                else {
+                    night = data.newShift.pay_total
+                }
+                setShifts(shifts => [...shifts, [data.newShift.shift_date, parseInt(night), parseInt(day)]])
+                toast.dark(`Shift: ${data.newShift.shift_date} Has Been Added!`, {
+                    autoClose: 3000,
+                    pauseOnHover: false
+                })
+            })
+
     }
 
 
@@ -101,7 +156,7 @@ const Home = (props) => {
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
             </div>
             <div className='home-screen-chart-container'>
-                <TipChart userID={store.get('user').id} />
+                <TipChart shifts={shifts} />
             </div>
             <div>
                 <h1>Earnings Analytics</h1>
