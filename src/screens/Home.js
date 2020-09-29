@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '@material-ui/core';
 import history from '../history';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TipChart from '../components/TipChart';
 import Footer from '../components/Footer';
+import AddShiftForm from '../components/AddShiftForm';
 const store = require('store2')
 
 
 const Home = (props) => {
+
+    const [AddShiftOpen, setAddShiftOpen] = useState(false)
 
     useEffect(() => {
         toast.dark(`Welcome Back ${store.get('user').name}`, {
@@ -21,11 +24,21 @@ const Home = (props) => {
         fetch("http://localhost:3000/logout")
             .then(resp => resp.json())
             .then(data => {
-                console.log(data)
                 store.remove('user')
                 history.push("/")
             })
     }
+
+    //Methods for Adding a Shift
+
+    const handleAddShift = () => {
+        setAddShiftOpen(true);
+
+    }
+
+    const handleCloseAddShift = () => {
+        setAddShiftOpen(false);
+    };
 
     return (
         <div className='home-screen'>
@@ -38,7 +51,8 @@ const Home = (props) => {
                 </div>
             </div>
             <div className='home-screen-button-container'>
-                <Button variant="contained" color="primary" className='home-screen-tool-btn' >Enter New Shift</Button><br /><br />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={handleAddShift}>Enter New Shift</Button><br /><br />
+                <AddShiftForm open={AddShiftOpen} handleClose={handleCloseAddShift} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Remove Old Shift</Button><br /><br />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >View All Shifts</Button><br /><br />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
