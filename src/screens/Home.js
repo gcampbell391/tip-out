@@ -24,7 +24,6 @@ const Home = (props) => {
         fetch(`http://localhost:3000/users/${userID}`)
             .then(resp => resp.json())
             .then(data => {
-                //Sort array by dates before looping through each
 
                 data.shifts.forEach(shift => {
                     let day = 0
@@ -129,7 +128,7 @@ const Home = (props) => {
                     night = data.newShift.pay_total
                 }
                 setShifts(shifts => [...shifts, [data.newShift.shift_date, parseInt(night), parseInt(day)]])
-                toast.dark(`Shift: ${data.newShift.shift_date} Has Been Added!`, {
+                toast.dark(`Shift: ${data.newShift.shift_date} Has Been added!`, {
                     autoClose: 3000,
                     pauseOnHover: false
                 })
