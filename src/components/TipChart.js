@@ -5,7 +5,6 @@ import { Chart } from "react-google-charts";
 
 const TipChart = (props) => {
 
-    //Take off first array and add it back after sort
     return (
         <div>
             <Chart
@@ -15,6 +14,8 @@ const TipChart = (props) => {
                 loader={<div>Loading Chart</div>}
                 data={props.shifts}
                 options={{
+                    pointSize: 15,
+                    pointShape: { type: 'star', sides: 5 },
                     animation: {
                         duration: 1000,
                         easing: 'out',

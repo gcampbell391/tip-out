@@ -11,7 +11,7 @@ const store = require('store2')
 
 const Home = (props) => {
 
-    const [shifts, setShifts] = useState([['x', 'night', 'day'], ['2/1/20', 0, 0]])
+    const [shifts, setShifts] = useState([['x', 'night', 'day']])
     const [AddShiftOpen, setAddShiftOpen] = useState(false)
 
     //Fetch user shifts to display in chart
@@ -24,20 +24,33 @@ const Home = (props) => {
         fetch(`http://localhost:3000/users/${userID}`)
             .then(resp => resp.json())
             .then(data => {
-
-                data.shifts.forEach(shift => {
-                    let day = 0
-                    let night = 0
-                    if (shift.shift_type === "day") {
-                        day = shift.pay_total
-                    }
-                    else {
-                        night = shift.pay_total
-                    }
-                    setShifts(shifts => [...shifts, [shift.shift_date, parseInt(night), parseInt(day)]])
-                })
+                updateShifts(data)
             })
     }, [])
+
+
+    const updateShifts = (data) => {
+        let shifts = data.shifts
+        //Sort shifts
+        shifts.sort(function (a, b) {
+            return new Date(a.shift_date) - new Date(b.shift_date)
+        })
+        //Return at max 10 most recent shifts
+        if (data.shifts.length > 10) {
+            shifts = data.shifts.slice(-10)
+        }
+        shifts.forEach(shift => {
+            let day = 0
+            let night = 0
+            if (shift.shift_type === "day") {
+                day = shift.pay_total
+            }
+            else {
+                night = shift.pay_total
+            }
+            setShifts(shifts => [...shifts, [shift.shift_date, parseInt(night), parseInt(day)]])
+        })
+    }
 
     const handleLogOut = () => {
         fetch("http://localhost:3000/logout")
@@ -119,15 +132,13 @@ const Home = (props) => {
             .then(data => {
                 console.log(data)
                 setAddShiftOpen(false)
-                let day = 0
-                let night = 0
-                if (data.newShift.shift_type === "day") {
-                    day = data.newShift.pay_total
-                }
-                else {
-                    night = data.newShift.pay_total
-                }
-                setShifts(shifts => [...shifts, [data.newShift.shift_date, parseInt(night), parseInt(day)]])
+                setShifts([['x', 'night', 'day']])
+                let userID = store.get('user').id
+                fetch(`http://localhost:3000/users/${userID}`)
+                    .then(resp => resp.json())
+                    .then(data => {
+                        updateShifts(data)
+                    })
                 toast.dark(`Shift: ${data.newShift.shift_date} Has Been added!`, {
                     autoClose: 3000,
                     pauseOnHover: false
