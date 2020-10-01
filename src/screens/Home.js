@@ -29,6 +29,7 @@ const Home = (props) => {
     }, [])
 
 
+    //Helper Method for sorting and limiting shifts(Max: 10)
     const updateShifts = (data) => {
         let shifts = data.shifts
         //Sort shifts
@@ -52,6 +53,7 @@ const Home = (props) => {
         })
     }
 
+    //User Log Out
     const handleLogOut = () => {
         fetch("http://localhost:3000/logout")
             .then(resp => resp.json())
@@ -62,11 +64,12 @@ const Home = (props) => {
     }
 
     //Methods for Adding a Shift
-
+    //Opens Add Shift Modal
     const handleAddShift = () => {
         setAddShiftOpen(true);
     }
 
+    //Adds New Shift for Current User
     const handleAddShiftSubmit = (shiftType, shiftDate, restaurant, shiftHours, shiftTips, shiftComments) => {
 
         //Validates shiftType
