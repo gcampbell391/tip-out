@@ -13,7 +13,7 @@ import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 
 
 
-
+//Styles for the Material UI Modal
 const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(1),
@@ -42,6 +42,7 @@ const AddShiftForm = (props) => {
     const [shiftType, setShiftType] = useState("")
     const [shiftComments, setShiftComments] = useState("")
 
+    //Handles Add Shift Submit
     const handleAddShiftSubmit = () => {
         props.handleAddShiftSubmit(shiftType, shiftDate, restaurant, shiftHours, shiftTipTotal, shiftComments)
         setRestaurant("")

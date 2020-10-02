@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
+//Styles for the Material UI Modal
 const useStyles = makeStyles(theme => ({
     modal: {
         display: 'flex',
