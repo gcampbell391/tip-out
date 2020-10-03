@@ -31,10 +31,12 @@ const SignUpForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    //Handles Modal Open
     const handleOpen = () => {
         setOpen(true);
     };
 
+    //Handles Modal Close
     const handleClose = () => {
         setOpen(false);
     };
@@ -54,6 +56,7 @@ const SignUpForm = () => {
         setPassword(e.target.value)
     }
 
+    //Handles New User Sign Up 
     const handleSignUp = () => {
         if (name === "" || email === "" || password === "") {
             toast.dark("⚠️ Please fill out all fields", {
