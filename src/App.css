@@ -80,9 +80,13 @@ width:180px;
 
 .home-screen-button-container{
   display: flex;
-  justify-content: space-between;
-  width:70%;
+  justify-content: center;
+  width:80%;
   margin: auto;
+}
+.home-screen-button-container button{
+  width: 200px;
+  margin: 20px;
 }
 
 .home-screen-tool-btn{

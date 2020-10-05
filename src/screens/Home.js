@@ -31,30 +31,6 @@ const Home = (props) => {
     }, [])
 
 
-    //Helper Method for sorting and limiting shifts(Max: 10)
-    const updateShifts = (data) => {
-        let shifts = data.shifts
-        //Sort shifts
-        shifts.sort(function (a, b) {
-            return new Date(a.shift_date) - new Date(b.shift_date)
-        })
-        //Return at max 10 most recent shifts
-        if (data.shifts.length > 10) {
-            shifts = data.shifts.slice(-10)
-        }
-        shifts.forEach(shift => {
-            let day = 0
-            let night = 0
-            if (shift.shift_type === "day") {
-                day = shift.pay_total
-            }
-            else {
-                night = shift.pay_total
-            }
-            setShifts(shifts => [...shifts, [shift.shift_date, parseInt(night), parseInt(day)]])
-        })
-    }
-
     //User Log Out
     const handleLogOut = () => {
         fetch("http://localhost:3000/logout")
@@ -120,7 +96,6 @@ const Home = (props) => {
             pay_total: shiftTips,
             shift_comments: shiftComments
         }
-        console.log(newShift)
         fetch('http://localhost:3000/add_shift', {
             method: 'POST',
             headers: {
@@ -130,13 +105,20 @@ const Home = (props) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
-                setAddShiftOpen(false)
-                updateShiftsHelper()
-                toast.dark(`Shift: ${data.newShift.shift_date} Has Been added!`, {
-                    autoClose: 3000,
-                    pauseOnHover: false
-                })
+                if (data.error) {
+                    toast.dark(`${data.error}`, {
+                        autoClose: 3000,
+                        pauseOnHover: false
+                    })
+                }
+                else {
+                    setAddShiftOpen(false)
+                    updateShiftsHelper()
+                    toast.dark(`Shift: ${data.newShift.shift_date} Has Been added!`, {
+                        autoClose: 3000,
+                        pauseOnHover: false
+                    })
+                }
             })
     }
 
@@ -186,6 +168,31 @@ const Home = (props) => {
             .then(data => {
                 updateShifts(data)
             })
+    }
+
+    //Helper Method for sorting and limiting shifts(Max: 10)
+    const updateShifts = (data) => {
+        let shifts = data.shifts
+        //Sort shifts
+        shifts.sort(function (a, b) {
+            return new Date(a.shift_date) - new Date(b.shift_date)
+        })
+        //Return at max 10 most recent shifts
+        if (data.shifts.length > 10) {
+            shifts = data.shifts.slice(-10)
+        }
+        shifts.forEach(shift => {
+            let day = 0
+            let night = 0
+            //If date exists in array already, update current date...STILL NEED THIS
+            if (shift.shift_type === "day") {
+                day = shift.pay_total
+            }
+            else {
+                night = shift.pay_total
+            }
+            setShifts(shifts => [...shifts, [shift.shift_date, parseInt(night), parseInt(day)]])
+        })
     }
 
     return (
