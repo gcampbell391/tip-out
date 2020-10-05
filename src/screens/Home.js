@@ -132,13 +132,7 @@ const Home = (props) => {
             .then(data => {
                 console.log(data)
                 setAddShiftOpen(false)
-                setShifts([['x', 'night', 'day']])
-                let userID = store.get('user').id
-                fetch(`http://localhost:3000/users/${userID}`)
-                    .then(resp => resp.json())
-                    .then(data => {
-                        updateShifts(data)
-                    })
+                updateShiftsHelper()
                 toast.dark(`Shift: ${data.newShift.shift_date} Has Been added!`, {
                     autoClose: 3000,
                     pauseOnHover: false
@@ -146,13 +140,53 @@ const Home = (props) => {
             })
     }
 
+    //Removes Shift for Current User
     const handleDeleteShift = (shiftType, shiftDate) => {
         //Converts shiftDate
         shiftDate = (parseInt(shiftDate.getMonth()) + 1) + "/" + shiftDate.getDate() + "/" + shiftDate.getFullYear().toString().charAt(2) + shiftDate.getFullYear().toString().charAt(3)
         console.log('Shift Type: ', shiftType)
         console.log('Shift Date: ', shiftDate)
+        const shift = {
+            shiftType,
+            shiftDate
+        }
+        fetch('http://localhost:3000/delete_shift', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(shift),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.status) {
+                    toast.dark(`${data.status}`, {
+                        autoClose: 3000,
+                        pauseOnHover: false
+                    })
+                }
+                else {
+                    toast.dark(`Shift For ${data.shift.shift_date} Has Been Deleted!`, {
+                        autoClose: 3000,
+                        pauseOnHover: false
+                    })
+                    updateShiftsHelper()
+                    setDeleteShiftOpen(false)
+                }
+            })
     }
 
+    //Helper Method to Update Current User Shifts
+    const updateShiftsHelper = () => {
+        setShifts([['x', 'night', 'day']])
+        let userID = store.get('user').id
+        fetch(`http://localhost:3000/users/${userID}`)
+            .then(resp => resp.json())
+            .then(data => {
+                updateShifts(data)
+            })
+    }
 
     return (
         <div className='home-screen'>

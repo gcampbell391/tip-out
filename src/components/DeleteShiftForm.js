@@ -38,6 +38,12 @@ const DeleteShiftForm = (props) => {
     const [shiftDate, setShiftDate] = useState(new Date())
     const [shiftType, setShiftType] = useState("")
 
+    const deleteShiftSubmit = () => {
+        props.handleDeleteShift(shiftType, shiftDate)
+        setShiftDate(new Date())
+        setShiftType("")
+    }
+
     return (
         <div>
             <Modal
@@ -83,7 +89,7 @@ const DeleteShiftForm = (props) => {
                                     }}
                                 />
                             </MuiPickersUtilsProvider><br />
-                            <Button variant="contained" color="primary" id='login-form-button' onClick={() => props.handleDeleteShift(shiftType, shiftDate)} >Delete Shift</Button> <Button variant="contained" color="secondary" id='login-form-close-button' onClick={props.handleDeleteShiftClose}>X</Button>
+                            <Button variant="contained" color="primary" id='login-form-button' onClick={() => deleteShiftSubmit()} >Delete Shift</Button> <Button variant="contained" color="secondary" id='login-form-close-button' onClick={props.handleDeleteShiftClose}>X</Button>
                         </form>
                     </div>
                 </Fade>
