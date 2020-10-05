@@ -16,11 +16,12 @@ const TipChart = (props) => {
                 options={{
                     pointSize: 15,
                     pointShape: { type: 'star', sides: 5 },
-                    animation: {
-                        duration: 1000,
-                        easing: 'out',
-                        startup: true,
-                    },
+                    //Need to figure out how to make chart only animate at start
+                    // animation: {
+                    //     duration: 1000,
+                    //     easing: 'out',
+                    //     startup: true,
+                    // },
                     hAxis: {
                         title: 'Date',
                     },

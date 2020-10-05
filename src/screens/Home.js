@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import TipChart from '../components/TipChart';
 import Footer from '../components/Footer';
 import AddShiftForm from '../components/AddShiftForm';
+import DeleteShiftForm from '../components/DeleteShiftForm'
 const store = require('store2')
 
 
@@ -13,6 +14,7 @@ const Home = (props) => {
 
     const [shifts, setShifts] = useState([['x', 'night', 'day']])
     const [AddShiftOpen, setAddShiftOpen] = useState(false)
+    const [DeleteShiftOpen, setDeleteShiftOpen] = useState(false)
 
     //Fetch user shifts to display in chart
     useEffect(() => {
@@ -63,11 +65,6 @@ const Home = (props) => {
             })
     }
 
-    //Methods for Adding a Shift
-    //Opens Add Shift Modal
-    const handleAddShift = () => {
-        setAddShiftOpen(true);
-    }
 
     //Adds New Shift for Current User
     const handleAddShiftSubmit = (shiftType, shiftDate, restaurant, shiftHours, shiftTips, shiftComments) => {
@@ -147,7 +144,13 @@ const Home = (props) => {
                     pauseOnHover: false
                 })
             })
+    }
 
+    const handleDeleteShift = (shiftType, shiftDate) => {
+        //Converts shiftDate
+        shiftDate = (parseInt(shiftDate.getMonth()) + 1) + "/" + shiftDate.getDate() + "/" + shiftDate.getFullYear().toString().charAt(2) + shiftDate.getFullYear().toString().charAt(3)
+        console.log('Shift Type: ', shiftType)
+        console.log('Shift Date: ', shiftDate)
     }
 
 
@@ -162,9 +165,10 @@ const Home = (props) => {
                 </div>
             </div>
             <div className='home-screen-button-container'>
-                <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={handleAddShift}>Enter New Shift</Button><br /><br />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setAddShiftOpen(true)}>Enter New Shift</Button><br /><br />
                 <AddShiftForm open={AddShiftOpen} handleClose={() => setAddShiftOpen(false)} handleAddShiftSubmit={handleAddShiftSubmit} handleAddShiftClose={() => setAddShiftOpen(false)} />
-                <Button variant="contained" color="primary" className='home-screen-tool-btn' >Remove Old Shift</Button><br /><br />
+                <DeleteShiftForm open={DeleteShiftOpen} handleClose={() => setDeleteShiftOpen(false)} handleDeleteShiftClose={() => setDeleteShiftOpen(false)} handleDeleteShift={handleDeleteShift} />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setDeleteShiftOpen(true)}>Remove Old Shift</Button><br /><br />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >View All Shifts</Button><br /><br />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
             </div>
