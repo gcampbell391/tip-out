@@ -7,6 +7,7 @@ import TipChart from '../components/TipChart';
 import Footer from '../components/Footer';
 import AddShiftForm from '../components/AddShiftForm';
 import DeleteShiftForm from '../components/DeleteShiftForm'
+import AllShifts from '../components/AllShifts'
 const store = require('store2')
 
 
@@ -15,6 +16,7 @@ const Home = (props) => {
     const [shifts, setShifts] = useState([['x', 'night', 'day']])
     const [AddShiftOpen, setAddShiftOpen] = useState(false)
     const [DeleteShiftOpen, setDeleteShiftOpen] = useState(false)
+    const [allShiftsOpen, setAllShiftsOpen] = useState(false)
 
     //Fetch user shifts to display in chart
     useEffect(() => {
@@ -208,9 +210,10 @@ const Home = (props) => {
             <div className='home-screen-button-container'>
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setAddShiftOpen(true)}>Enter New Shift</Button><br /><br />
                 <AddShiftForm open={AddShiftOpen} handleClose={() => setAddShiftOpen(false)} handleAddShiftSubmit={handleAddShiftSubmit} handleAddShiftClose={() => setAddShiftOpen(false)} />
-                <DeleteShiftForm open={DeleteShiftOpen} handleClose={() => setDeleteShiftOpen(false)} handleDeleteShiftClose={() => setDeleteShiftOpen(false)} handleDeleteShift={handleDeleteShift} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setDeleteShiftOpen(true)}>Remove Old Shift</Button><br /><br />
-                <Button variant="contained" color="primary" className='home-screen-tool-btn' >View All Shifts</Button><br /><br />
+                <DeleteShiftForm open={DeleteShiftOpen} handleClose={() => setDeleteShiftOpen(false)} handleDeleteShiftClose={() => setDeleteShiftOpen(false)} handleDeleteShift={handleDeleteShift} />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setAllShiftsOpen(true)}>View All Shifts</Button><br /><br />
+                <AllShifts open={allShiftsOpen} handleClose={() => setAllShiftsOpen(false)} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
             </div>
             <div className='home-screen-chart-container'>

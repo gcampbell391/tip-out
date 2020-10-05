@@ -19,14 +19,13 @@ const TipChart = (props) => {
                     //Need to figure out how to make chart only animate at start
                     // animation: {
                     //     duration: 1000,
-                    //     easing: 'out',
-                    //     startup: true,
+                    //     startup: true //This is the new option
                     // },
                     hAxis: {
                         title: 'Date',
                     },
                     vAxis: {
-                        title: 'Total Tip Out',
+                        title: 'Total Tip Out In Dollars',
                         viewWindow: {
                             min: 0
                         }

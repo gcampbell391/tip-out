@@ -101,3 +101,50 @@ width:180px;
   margin-top: 20px;
 }
 
+.all-shifts-modal{
+  overflow-y:auto;
+  height: 500px;
+  text-align: center;
+}
+
+.single-shift-card{
+  display: flex;
+  width:400px;
+}
+
+.single-shift-card-left{
+  width: 33%;
+}
+
+.single-shift-card-middle{
+  width: 33%;
+}
+
+.single-shift-card-right{
+  width: 33%;
+}
+
+#all-shifts-close{
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+}
+
+#all-shifts-hr{
+  margin-top: 10px;
+}
+
+.single-shift-card-title{
+  font-weight: bold;
+}
+
+.single-shift-card-info{
+  padding-top: 5px;
+}
+
+.single-shift-card-info-tip{
+  padding-top: 5px;
+  color: #33eb91
+}
+
+
