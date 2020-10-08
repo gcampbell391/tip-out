@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import AddShiftForm from '../components/AddShiftForm';
 import DeleteShiftForm from '../components/DeleteShiftForm'
 import AllShifts from '../components/AllShifts'
+import UpdateAccount from '../components/UpdateAccount';
 const store = require('store2')
 
 
@@ -17,6 +18,7 @@ const Home = (props) => {
     const [AddShiftOpen, setAddShiftOpen] = useState(false)
     const [DeleteShiftOpen, setDeleteShiftOpen] = useState(false)
     const [allShiftsOpen, setAllShiftsOpen] = useState(false)
+    const [updateAccountOpen, setUpdateAccountOpen] = useState(false)
 
     //Fetch user shifts to display in chart
     useEffect(() => {
@@ -214,7 +216,8 @@ const Home = (props) => {
                 <DeleteShiftForm open={DeleteShiftOpen} handleClose={() => setDeleteShiftOpen(false)} handleDeleteShiftClose={() => setDeleteShiftOpen(false)} handleDeleteShift={handleDeleteShift} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setAllShiftsOpen(true)}>View All Shifts</Button><br /><br />
                 <AllShifts open={allShiftsOpen} handleClose={() => setAllShiftsOpen(false)} />
-                <Button variant="contained" color="primary" className='home-screen-tool-btn' >Update Account</Button><br /><br />
+                <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setUpdateAccountOpen(true)}>Update Account</Button><br /><br />
+                <UpdateAccount open={updateAccountOpen} handleClose={() => setUpdateAccountOpen(false)} />
             </div>
             <div className='home-screen-chart-container'>
                 <TipChart shifts={shifts} />

@@ -169,4 +169,13 @@ width:180px;
   margin-top: -5px;
 }
 
+.single-shift-details{
+  width: 300px;
+}
 
+.update-account-buttons{
+ width: 300px;
+}
+.MuiButtonBase-root{
+  margin-top: 10px;
+}
