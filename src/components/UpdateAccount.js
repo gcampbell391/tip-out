@@ -40,10 +40,18 @@ const UpdateAccount = (props) => {
                 <Fade in={props.open}>
                     <div className={classes.paper}>
                         <div className='single-shift-details'>
-                            <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Name</Button><br />
-                            <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Email</Button>
-                            <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Password</Button>
-                            <Button variant="contained" color="secondary" className='update-account-buttons' onClick={props.handleClose}>Delete Account</Button>
+                            <div className='update-account-modal-update-name-container'>
+                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Name</Button>
+                            </div>
+                            <div className='update-account-modal-update-email-container'>
+                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Email</Button>
+                            </div>
+                            <div className='update-account-modal-update-password-container'>
+                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Password</Button>
+                            </div>
+                            <div className='update-account-modal-delete-account-container'>
+                                <Button variant="contained" color="secondary" className='update-account-buttons' onClick={props.handleClose}>Delete Account</Button>
+                            </div>
                         </div>
                         <hr id='all-shifts-hr' />
                         <Button variant="contained" color="secondary" id='all-shifts-close' onClick={props.handleClose}>X</Button>

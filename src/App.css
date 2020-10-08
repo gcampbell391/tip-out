@@ -176,6 +176,20 @@ width:180px;
 .update-account-buttons{
  width: 300px;
 }
-.MuiButtonBase-root{
-  margin-top: 10px;
+
+.update-account-modal-update-name-container{
+  margin-bottom: 10px;
 }
+
+.update-account-modal-update-email-container{
+  margin-bottom: 10px;
+}
+
+.update-account-modal-update-password-container{
+  margin-bottom: 10px;
+}
+
+.update-account-modal-delete-account-container{
+  margin-bottom: 10px;
+}
+
