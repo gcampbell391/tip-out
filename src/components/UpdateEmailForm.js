@@ -20,21 +20,19 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
-const UpdateNameForm = (props) => {
+const UpdateEmailForm = (props) => {
     const classes = useStyles();
-    const [newName, setNewName] = useState("")
+    const [newEmail, setNewEmail] = useState("")
 
-
-    //Handle Name Input Change
-    const handleNameChange = (e) => {
-        setNewName(e.target.value)
+    //Handle Email Input Change
+    const handleEmailChange = (e) => {
+        setNewEmail(e.target.value)
     }
 
-    //Handles New Name Submit
-    const handleNameUpdateSubmit = () => {
-        setNewName("")
-        props.submitNewName(newName)
+    //Handles New Email Submit
+    const handleEmailUpdateSubmit = () => {
+        setNewEmail("")
+        props.submitNewEmail(newEmail)
     }
 
     return (
@@ -53,8 +51,8 @@ const UpdateNameForm = (props) => {
             >
                 <Fade in={props.open}>
                     <div className={classes.paper}>
-                        <TextField id="standard-basic" label="New Name" required value={newName} onChange={handleNameChange} /><br />
-                        <Button variant="contained" color="primary" id='all-shifts-close' onClick={handleNameUpdateSubmit}>Update Name</Button>
+                        <TextField id="standard-basic" label="New Email" required value={newEmail} onChange={handleEmailChange} /><br />
+                        <Button variant="contained" color="primary" id='all-shifts-close' onClick={handleEmailUpdateSubmit}>Update Email</Button>
                         <Button variant="contained" color="secondary" id='all-shifts-close' onClick={props.handleClose}>X</Button>
                     </div>
                 </Fade>
@@ -63,4 +61,5 @@ const UpdateNameForm = (props) => {
     )
 }
 
-export default UpdateNameForm
+
+export default UpdateEmailForm

@@ -5,6 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import UpdateNameForm from './UpdateNameForm';
+import UpdateEmailForm from './UpdateEmailForm';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const store = require('store2')
@@ -28,10 +29,10 @@ const useStyles = makeStyles(theme => ({
 const UpdateAccount = (props) => {
     const classes = useStyles();
     const [updateNameOpen, setUpdateNameOpen] = useState(false)
+    const [updateEmailOpen, setUpdateEmailOpen] = useState(false)
 
-
+    //Handles User Update Name
     const submitNewName = (newName) => {
-        console.log(newName)
         let userID = store.get('user').id
         const updatedUser = {
             id: userID,
@@ -46,7 +47,6 @@ const UpdateAccount = (props) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data.status === 404) {
                     return toast.dark(`Error Occurred..Please Try Again!`, {
                         autoClose: 2000,
@@ -63,6 +63,48 @@ const UpdateAccount = (props) => {
                     store('user', data.user)
                 }
             })
+    }
+
+    //Handles User Update Email
+    const submitNewEmail = (newEmail) => {
+        console.log(newEmail)
+        let userID = store.get('user').id
+        const updatedUser = {
+            id: userID,
+            email: newEmail
+        }
+        if (!newEmail.includes('@') === true || !newEmail.includes('.com') === true) {
+            return toast.dark(`Please Enter a Valid Email!`, {
+                autoClose: 2000,
+                pauseOnHover: false
+            })
+        }
+        fetch(`http://localhost:3000/update_email`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 404) {
+                    return toast.dark(`Error Occurred..Please Try Again!`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                }
+                else {
+                    toast.dark(`Your Email has been Updated!`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                    setUpdateEmailOpen(false)
+                    store.remove('user')
+                    store('user', data.user)
+                }
+            })
+
     }
 
     return (
@@ -87,7 +129,8 @@ const UpdateAccount = (props) => {
                                 <UpdateNameForm open={updateNameOpen} handleClose={() => setUpdateNameOpen(false)} submitNewName={submitNewName} />
                             </div>
                             <div className='update-account-modal-update-email-container'>
-                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Email</Button>
+                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={() => setUpdateEmailOpen(true)}>Update Email</Button>
+                                <UpdateEmailForm open={updateEmailOpen} handleClose={() => setUpdateEmailOpen(false)} submitNewEmail={submitNewEmail} />
                             </div>
                             <div className='update-account-modal-update-password-container'>
                                 <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Password</Button>
