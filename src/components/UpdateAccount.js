@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import UpdateNameForm from './UpdateNameForm';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const store = require('store2')
+
 
 //Styles for the Material UI Modal
 const useStyles = makeStyles(theme => ({
@@ -22,6 +27,43 @@ const useStyles = makeStyles(theme => ({
 
 const UpdateAccount = (props) => {
     const classes = useStyles();
+    const [updateNameOpen, setUpdateNameOpen] = useState(false)
+
+
+    const submitNewName = (newName) => {
+        console.log(newName)
+        let userID = store.get('user').id
+        const updatedUser = {
+            id: userID,
+            name: newName
+        }
+        fetch(`http://localhost:3000/update_name`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.status === 404) {
+                    return toast.dark(`Error Occurred..Please Try Again!`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                }
+                else {
+                    toast.dark(`Your Name has been Updated!`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                    setUpdateNameOpen(false)
+                    store.remove('user')
+                    store('user', data.user)
+                }
+            })
+    }
 
     return (
         <div>
@@ -41,7 +83,8 @@ const UpdateAccount = (props) => {
                     <div className={classes.paper}>
                         <div className='single-shift-details'>
                             <div className='update-account-modal-update-name-container'>
-                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Name</Button>
+                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={() => setUpdateNameOpen(true)}>Update Name</Button>
+                                <UpdateNameForm open={updateNameOpen} handleClose={() => setUpdateNameOpen(false)} submitNewName={submitNewName} />
                             </div>
                             <div className='update-account-modal-update-email-container'>
                                 <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Email</Button>
