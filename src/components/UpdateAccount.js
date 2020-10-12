@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button } from '@material-ui/core';
+import history from '../history';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -9,7 +10,9 @@ import UpdateEmailForm from './UpdateEmailForm';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UpdatePasswordForm from './UpdatePasswordForm';
+import UpdateDeleteForm from './UpdateDeleteForm';
 const store = require('store2')
+
 
 
 //Styles for the Material UI Modal
@@ -32,6 +35,8 @@ const UpdateAccount = (props) => {
     const [updateNameOpen, setUpdateNameOpen] = useState(false)
     const [updateEmailOpen, setUpdateEmailOpen] = useState(false)
     const [updatePasswordOpen, setUpdatePasswordOpen] = useState(false)
+    const [updateDeleteOpen, setUpdateDeleteOpen] = useState(false)
+
 
 
     //Handles User Update Name
@@ -145,6 +150,39 @@ const UpdateAccount = (props) => {
             })
     }
 
+    //Handles User Delete Account
+    const deleteAccount = () => {
+        console.log("Delete Account")
+        let userID = store.get('user').id
+        const updatedUser = {
+            id: userID,
+        }
+        fetch(`http://localhost:3000/delete_account`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    return toast.dark(`${data.error}`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                }
+                else {
+                    toast.dark(`${data.message}`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                    store.remove('user')
+                    history.push("/")
+                }
+            })
+    }
+
     return (
         <div>
             <Modal
@@ -175,7 +213,8 @@ const UpdateAccount = (props) => {
                                 <UpdatePasswordForm open={updatePasswordOpen} handleClose={() => setUpdatePasswordOpen(false)} submitNewPassword={submitNewPassword} />
                             </div>
                             <div className='update-account-modal-delete-account-container'>
-                                <Button variant="contained" color="secondary" className='update-account-buttons' onClick={props.handleClose}>Delete Account</Button>
+                                <Button variant="contained" color="secondary" className='update-account-buttons' onClick={() => setUpdateDeleteOpen(true)}>Delete Account</Button>
+                                <UpdateDeleteForm open={updateDeleteOpen} handleClose={() => setUpdateDeleteOpen(false)} deleteAccount={deleteAccount} />
                             </div>
                         </div>
                         <hr id='all-shifts-hr' />

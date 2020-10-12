@@ -193,3 +193,12 @@ width:180px;
   margin-bottom: 10px;
 }
 
+#delete-form-header{
+  text-align: center;
+}
+
+#delete-form-desc{
+  font-size: 13px;
+  margin-top: -13px;
+}
+
