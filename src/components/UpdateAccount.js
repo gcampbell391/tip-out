@@ -8,6 +8,7 @@ import UpdateNameForm from './UpdateNameForm';
 import UpdateEmailForm from './UpdateEmailForm';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UpdatePasswordForm from './UpdatePasswordForm';
 const store = require('store2')
 
 
@@ -30,6 +31,8 @@ const UpdateAccount = (props) => {
     const classes = useStyles();
     const [updateNameOpen, setUpdateNameOpen] = useState(false)
     const [updateEmailOpen, setUpdateEmailOpen] = useState(false)
+    const [updatePasswordOpen, setUpdatePasswordOpen] = useState(false)
+
 
     //Handles User Update Name
     const submitNewName = (newName) => {
@@ -67,7 +70,6 @@ const UpdateAccount = (props) => {
 
     //Handles User Update Email
     const submitNewEmail = (newEmail) => {
-        console.log(newEmail)
         let userID = store.get('user').id
         const updatedUser = {
             id: userID,
@@ -104,7 +106,43 @@ const UpdateAccount = (props) => {
                     store('user', data.user)
                 }
             })
+    }
 
+    //Handles User Update Password
+    const submitNewPassword = (oldPassword, newPassword) => {
+        console.log(oldPassword, newPassword)
+        let userID = store.get('user').id
+        const updatedUser = {
+            id: userID,
+            oldPassword: oldPassword,
+            newPassword: newPassword
+        }
+        fetch(`http://localhost:3000/update_password`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.error) {
+                    return toast.dark(`${data.error}`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                }
+                else {
+                    toast.dark(`Password Was Successfully Updated!`, {
+                        autoClose: 2000,
+                        pauseOnHover: false
+                    })
+                    setUpdatePasswordOpen(false)
+                    store.remove('user')
+                    store('user', data.user)
+                }
+            })
     }
 
     return (
@@ -133,7 +171,8 @@ const UpdateAccount = (props) => {
                                 <UpdateEmailForm open={updateEmailOpen} handleClose={() => setUpdateEmailOpen(false)} submitNewEmail={submitNewEmail} />
                             </div>
                             <div className='update-account-modal-update-password-container'>
-                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={props.handleClose}>Update Password</Button>
+                                <Button variant="contained" color="primary" className='update-account-buttons' onClick={() => setUpdatePasswordOpen(true)}>Update Password</Button>
+                                <UpdatePasswordForm open={updatePasswordOpen} handleClose={() => setUpdatePasswordOpen(false)} submitNewPassword={submitNewPassword} />
                             </div>
                             <div className='update-account-modal-delete-account-container'>
                                 <Button variant="contained" color="secondary" className='update-account-buttons' onClick={props.handleClose}>Delete Account</Button>

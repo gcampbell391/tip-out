@@ -6,6 +6,10 @@ Users can:
 - Add A Shift/Tip
 - Delete A Shift
 - Update Account Info
+    - Update Name
+    - Update Email
+    - Update Password
+    - Delete Account
 - View Recent Tips On A Chart
 - View All Tips/Shifts With Details
 - View Analytics and Trends For Recorded Tips
