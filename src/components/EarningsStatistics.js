@@ -38,11 +38,11 @@ const EarningsStatistics = () => {
                     <span>${parseFloat(userData.avgTipsPerShift).toFixed(2)}</span>
                 </div>
                 <div className='earnings-statistics-flex-box-2'>
-                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Shift(Day)</p>
+                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Shift (Day)</p>
                     <span>${parseFloat(userData.avgTipsPerDay).toFixed(2)}</span>
                 </div>
                 <div className='earnings-statistics-flex-box-3'>
-                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Shift(Night)</p>
+                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Shift (Night)</p>
                     <span>${parseFloat(userData.avgTipsPerNight).toFixed(2)}</span>
                 </div>
             </div>
@@ -53,11 +53,11 @@ const EarningsStatistics = () => {
                     <span>${parseFloat(userData.avgPerHour).toFixed(2)}</span>
                 </div>
                 <div className='earnings-statistics-flex-box-2'>
-                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Hour(Day)</p>
+                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Hour (Day)</p>
                     <span>${parseFloat(userData.avgPerHourDay).toFixed(2)}</span>
                 </div>
                 <div className='earnings-statistics-flex-box-3'>
-                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Hour(Night)</p>
+                    <p className='earnings-statistics-flex-box-title'>Average Tips Per Hour (Night)</p>
                     <span>${parseFloat(userData.avgPerHourNight).toFixed(2)}</span>
                 </div>
             </div>
