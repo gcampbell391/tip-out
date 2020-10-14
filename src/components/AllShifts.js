@@ -32,7 +32,7 @@ const AllShifts = (props) => {
         fetch(`http://localhost:3000/users/${userID}`)
             .then(resp => resp.json())
             .then(data => {
-                setAllUserShifts(data.shifts)
+                setAllUserShifts(data.user.shifts)
             })
     }, [])
 

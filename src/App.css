@@ -202,3 +202,44 @@ width:180px;
   margin-top: -13px;
 }
 
+.earnings-statistics-flex-box{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  margin-bottom: 30px;
+}
+
+.earnings-statistics-flex-box-1{
+  width:33%;
+}
+
+.earnings-statistics-flex-box-2{
+  width:33%;
+}
+
+.earnings-statistics-flex-box-3{
+  width:33%;
+}
+
+.earnings-statistics-flex-box-title{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.earnings-statistics-flex-box-last-row{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width:80%;
+  margin-bottom: -30px;
+}
+
+.earnings-statistics-flex-box-last-row-1{
+  width:50%;
+}
+
+.earnings-statistics-flex-box-last-row-2{
+  width:50%;
+}

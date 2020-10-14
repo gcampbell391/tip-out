@@ -9,6 +9,7 @@ import AddShiftForm from '../components/AddShiftForm';
 import DeleteShiftForm from '../components/DeleteShiftForm'
 import AllShifts from '../components/AllShifts'
 import UpdateAccount from '../components/UpdateAccount';
+import EarningsStatistics from '../components/EarningsStatistics';
 const store = require('store2')
 
 
@@ -176,14 +177,14 @@ const Home = (props) => {
 
     //Helper Method for sorting and limiting shifts(Max: 10)
     const updateShifts = (data) => {
-        let shifts = data.shifts
+        let shifts = data.user.shifts
         //Sort shifts
         shifts.sort(function (a, b) {
             return new Date(a.shift_date) - new Date(b.shift_date)
         })
         //Return at max 10 most recent shifts
-        if (data.shifts.length > 10) {
-            shifts = data.shifts.slice(-10)
+        if (data.user.shifts.length > 10) {
+            shifts = data.user.shifts.slice(-10)
         }
         shifts.forEach(shift => {
             let day = 0
@@ -224,6 +225,7 @@ const Home = (props) => {
             </div>
             <div>
                 <h1>Earnings Analytics</h1>
+                <EarningsStatistics shifts={shifts} />
             </div>
             <Footer />
         </div >
