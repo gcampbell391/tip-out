@@ -1,17 +1,7 @@
-import React, { useState, useEffect } from 'react'
-const store = require('store2')
+import React from 'react'
 
-const EarningsStatistics = () => {
-    const [userData, setUserData] = useState([])
-
-    useEffect(() => {
-        let userID = store.get('user').id
-        fetch(`http://localhost:3000/users/${userID}`)
-            .then(resp => resp.json())
-            .then(data => {
-                setUserData(data)
-            })
-    }, [])
+const EarningsStatistics = (props) => {
+    const userData = props.userData
 
     console.log(userData)
     return (

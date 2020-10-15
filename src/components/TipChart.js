@@ -39,7 +39,8 @@ const TipChart = (props) => {
                 />
                 :
                 <div>
-                    <h1>Please Enter A Shift To Generate The Chart</h1>
+                    <p>Enter A Shift To Start Generating Analytics Today!</p>
+                    <img src={require('../images/money.png')} alt='no-chart-money' />
                 </div>
             }
         </div>

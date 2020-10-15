@@ -15,6 +15,7 @@ const store = require('store2')
 
 const Home = (props) => {
 
+    const [userData, setUserData] = useState([])
     const [shifts, setShifts] = useState([['x', 'night', 'day']])
     const [AddShiftOpen, setAddShiftOpen] = useState(false)
     const [DeleteShiftOpen, setDeleteShiftOpen] = useState(false)
@@ -33,6 +34,7 @@ const Home = (props) => {
             .then(data => {
                 updateShifts(data)
             })
+        updateUserData()
     }, [])
 
 
@@ -123,6 +125,7 @@ const Home = (props) => {
                         autoClose: 3000,
                         pauseOnHover: false
                     })
+                    updateUserData()
                 }
             })
     }
@@ -159,6 +162,7 @@ const Home = (props) => {
                         pauseOnHover: false
                     })
                     updateShiftsHelper()
+                    updateUserData()
                     setDeleteShiftOpen(false)
                 }
             })
@@ -200,6 +204,16 @@ const Home = (props) => {
         })
     }
 
+    //Helper Method to Update Current User
+    const updateUserData = () => {
+        let userID = store.get('user').id
+        fetch(`http://localhost:3000/users/${userID}`)
+            .then(resp => resp.json())
+            .then(data => {
+                setUserData(data)
+            })
+    }
+
     return (
         <div className='home-screen'>
             <div className='home-screen-header'>
@@ -225,7 +239,7 @@ const Home = (props) => {
             </div>
             <div>
                 <h1>Earnings Analytics</h1>
-                <EarningsStatistics shifts={shifts} />
+                <EarningsStatistics shifts={shifts} userData={userData} />
             </div>
             <Footer />
         </div >
