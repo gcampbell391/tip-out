@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const EarningsStatistics = (props) => {
     const userData = props.userData
 

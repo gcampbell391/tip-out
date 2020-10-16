@@ -241,6 +241,7 @@ const Home = (props) => {
                 <h1>Earnings Analytics</h1>
                 <EarningsStatistics shifts={shifts} userData={userData} />
             </div>
+            <hr id='home-hr' />
             <Footer />
         </div >
     )

@@ -243,3 +243,9 @@ width:180px;
 .earnings-statistics-flex-box-last-row-2{
   width:50%;
 }
+
+#home-hr{
+  width:60%;
+  margin-top: 100px;
+  margin-bottom: -40px;
+}
