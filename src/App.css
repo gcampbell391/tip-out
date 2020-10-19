@@ -32,6 +32,12 @@
 
 #welcome-screen-create-link{
   margin-top: 30px;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 20px;
+}
+
+#sign-up-form-title{
+  font-family: 'Shadows Into Light', cursive;
 }
 
 #login-form-button{
@@ -283,4 +289,49 @@ width:180px;
 }
 .all-shifts-modal-no-shifts{
   text-align: center;
+}
+
+/*
+  Mobile Responsiveness 
+*/
+
+@media only screen and (max-width: 750px) {
+  .home-screen-button-container{
+    display: flex;
+    justify-content: center;
+    width:100%;
+    margin: auto;
+  }
+ 
+  #earnings-analytics-title{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+    margin-top: -10px;
+  }
+
+
+.earnings-statistics-flex-box-title{
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+#home-hr{
+  width:40%;
+  margin-top: 70px;
+  margin-bottom: -60px;
+}
+
+#footer-issues{
+  padding-bottom: 5px;
+  font-size: 15px;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+#welcome-screen-logo{
+  margin-bottom: -20px;
+  margin-top: -30px;
+  width:100%;
+}
+
 }

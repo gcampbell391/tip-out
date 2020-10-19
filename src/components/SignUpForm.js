@@ -132,7 +132,7 @@ const SignUpForm = () => {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         <form noValidate autoComplete="off" className='sign-up-form'>
-                            <p>Please complete each field below</p>
+                            <p id='sign-up-form-title'>Please complete each field below</p>
                             <TextField id="standard-basic" label="Name" required value={name} onChange={handleNameChange} /><br />
                             <TextField id="standard-basic" label="Email" required value={email} onChange={handleEmailChange} /><br />
                             <TextField id="standard-basic" label="Password" required value={password} onChange={handlePasswordChange} /><br />
