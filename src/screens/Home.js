@@ -214,6 +214,12 @@ const Home = (props) => {
             })
     }
 
+    //Handles Closing All Shifts and Opens Add Shift If No Shifts Exist
+    const handleCloseAllAndOpenAdd = () => {
+        setAllShiftsOpen(false)
+        setAddShiftOpen(true)
+    }
+
     return (
         <div className='home-screen'>
             <div className='home-screen-header'>
@@ -230,7 +236,7 @@ const Home = (props) => {
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setDeleteShiftOpen(true)}>Remove Old Shift</Button><br /><br />
                 <DeleteShiftForm open={DeleteShiftOpen} handleClose={() => setDeleteShiftOpen(false)} handleDeleteShiftClose={() => setDeleteShiftOpen(false)} handleDeleteShift={handleDeleteShift} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setAllShiftsOpen(true)}>View All Shifts</Button><br /><br />
-                <AllShifts open={allShiftsOpen} handleClose={() => setAllShiftsOpen(false)} />
+                <AllShifts open={allShiftsOpen} handleClose={() => setAllShiftsOpen(false)} handleCloseAllAndOpenAdd={handleCloseAllAndOpenAdd} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setUpdateAccountOpen(true)}>Update Account</Button><br /><br />
                 <UpdateAccount open={updateAccountOpen} handleClose={() => setUpdateAccountOpen(false)} />
             </div>
@@ -238,7 +244,8 @@ const Home = (props) => {
                 <TipChart shifts={shifts} />
             </div>
             <div>
-                <h1>Earnings Analytics</h1>
+                <p id='earnings-analytics-title'>Earnings Analytics</p>
+                <hr id='home-hr-top' />
                 <EarningsStatistics shifts={shifts} userData={userData} />
             </div>
             <hr id='home-hr' />

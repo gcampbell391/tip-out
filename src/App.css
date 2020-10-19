@@ -45,6 +45,8 @@
 
 #footer-issues{
   padding-bottom: 5px;
+  font-size: 20px;
+  font-family: 'Shadows Into Light', cursive;
 }
 
 .sign-up-form{
@@ -65,6 +67,22 @@
 #home-screen-header-logo{
 width:180px;
 }
+
+#earnings-analytics-title{
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 35px;
+}
+
+#tip-chart-alt-title{
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 30px;
+}
+
+#tip-chart-alt-logo{
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
 .home-screen-header-left{
   width: 50%;
   text-align: left;
@@ -89,9 +107,6 @@ width:180px;
   margin: 20px;
 }
 
-.home-screen-tool-btn{
-
-}
 
 .home-screen-chart-container{
   width:100%;
@@ -103,7 +118,7 @@ width:180px;
 
 .all-shifts-modal{
   overflow-y:auto;
-  height: 500px;
+  height: 300px;
   text-align: center;
 }
 
@@ -224,7 +239,8 @@ width:180px;
 
 .earnings-statistics-flex-box-title{
   font-weight: bold;
-  font-size: 20px;
+  font-size: 22px;
+  font-family: 'Shadows Into Light', cursive;
 }
 
 .earnings-statistics-flex-box-last-row{
@@ -244,8 +260,27 @@ width:180px;
   width:50%;
 }
 
+.earnings-statistics-flex-box-numbers{
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 20px;
+  color: #33eb91;
+
+}
+
 #home-hr{
-  width:60%;
+  width:40%;
   margin-top: 100px;
   margin-bottom: -40px;
+}
+
+#home-hr-top{
+  width:40%;
+}
+
+.all-shifts-modal-title{
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 25px;
+}
+.all-shifts-modal-no-shifts{
+  text-align: center;
 }

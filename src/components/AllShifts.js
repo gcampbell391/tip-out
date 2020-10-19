@@ -36,6 +36,34 @@ const AllShifts = (props) => {
             })
     }, [])
 
+    if (allUserShifts.length === 0) {
+        return <div>
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={props.open}
+                onClose={props.handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={props.open}>
+                    <div className={classes.paper}>
+                        <div className='all-shifts-modal-no-shifts'>
+                            <p className='all-shifts-modal-title'>No Shifts Exist Yet!</p>
+                            <img src={require('../images/noShifts.png')} alt='no shifts exist logo' />
+                            <Button variant="contained" color="primary" id='all-shifts-close' onClick={props.handleCloseAllAndOpenAdd}>Add One Now</Button>
+                        </div>
+                        <hr id='all-shifts-hr' />
+                        <Button variant="contained" color="secondary" id='all-shifts-close' onClick={props.handleClose}>X</Button>
+                    </div>
+                </Fade>
+            </Modal>
+        </div>
+    }
     return (
         <div>
             <Modal
