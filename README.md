@@ -19,4 +19,8 @@ Users can:
 - Back-End: Ruby on Rails, PostGres
 - Front-End: React, JavaScript, HTML, CSS
 
-# Deployed Application Coming Soon!
+# Deployed App
+    https://tip-out.netlify.app/
+
+# App Video 
+    https://www.youtube.com/watch?v=NG6nF6nreeY&feature=youtu.be
