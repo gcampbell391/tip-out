@@ -40,11 +40,16 @@ const Home = (props) => {
 
     //User Log Out
     const handleLogOut = () => {
+        const userName = store.get('user').name
         fetch("http://localhost:3000/logout")
             .then(resp => resp.json())
             .then(data => {
-                store.remove('user')
                 history.push("/")
+                store.remove('user')
+                toast.dark(`Log Out Successful! Have A Great Day ${userName}!`, {
+                    autoClose: 3000,
+                    pauseOnHover: false
+                })
             })
     }
 
@@ -137,6 +142,7 @@ const Home = (props) => {
         console.log('Shift Type: ', shiftType)
         console.log('Shift Date: ', shiftDate)
         const shift = {
+            userID: store.get('user').id,
             shiftType,
             shiftDate
         }
@@ -236,7 +242,7 @@ const Home = (props) => {
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setDeleteShiftOpen(true)}>Remove Old Shift</Button><br /><br />
                 <DeleteShiftForm open={DeleteShiftOpen} handleClose={() => setDeleteShiftOpen(false)} handleDeleteShiftClose={() => setDeleteShiftOpen(false)} handleDeleteShift={handleDeleteShift} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setAllShiftsOpen(true)}>View All Shifts</Button><br /><br />
-                <AllShifts open={allShiftsOpen} handleClose={() => setAllShiftsOpen(false)} handleCloseAllAndOpenAdd={handleCloseAllAndOpenAdd} />
+                <AllShifts open={allShiftsOpen} handleClose={() => setAllShiftsOpen(false)} handleCloseAllAndOpenAdd={handleCloseAllAndOpenAdd} shifts={shifts} />
                 <Button variant="contained" color="primary" className='home-screen-tool-btn' onClick={() => setUpdateAccountOpen(true)}>Update Account</Button><br /><br />
                 <UpdateAccount open={updateAccountOpen} handleClose={() => setUpdateAccountOpen(false)} />
             </div>

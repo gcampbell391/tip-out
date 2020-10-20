@@ -34,7 +34,8 @@ const AllShifts = (props) => {
             .then(data => {
                 setAllUserShifts(data.user.shifts)
             })
-    }, [])
+
+    }, [props.shifts])
 
     if (allUserShifts.length === 0) {
         return <div>
