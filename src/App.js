@@ -30,7 +30,7 @@ function App() {
       email: email,
       password: password
     }
-    fetch('http://localhost:3000/login', {
+    fetch('https://tip-out-api.herokuapp.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

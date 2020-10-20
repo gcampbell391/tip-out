@@ -75,7 +75,7 @@ const SignUpForm = () => {
                 email: email,
                 password: password
             }
-            fetch('http://localhost:3000/users', {
+            fetch('https://tip-out-api.herokuapp.com/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

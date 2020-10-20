@@ -29,7 +29,7 @@ const AllShifts = (props) => {
 
     useEffect(() => {
         let userID = store.get('user').id
-        fetch(`http://localhost:3000/users/${userID}`)
+        fetch(`https://tip-out-api.herokuapp.com/users/${userID}`)
             .then(resp => resp.json())
             .then(data => {
                 setAllUserShifts(data.user.shifts)

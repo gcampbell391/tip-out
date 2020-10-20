@@ -46,7 +46,7 @@ const UpdateAccount = (props) => {
             id: userID,
             name: newName
         }
-        fetch(`http://localhost:3000/update_name`, {
+        fetch(`https://tip-out-api.herokuapp.com/update_name`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const UpdateAccount = (props) => {
                 pauseOnHover: false
             })
         }
-        fetch(`http://localhost:3000/update_email`, {
+        fetch(`https://tip-out-api.herokuapp.com/update_email`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ const UpdateAccount = (props) => {
             oldPassword: oldPassword,
             newPassword: newPassword
         }
-        fetch(`http://localhost:3000/update_password`, {
+        fetch(`https://tip-out-api.herokuapp.com/update_password`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ const UpdateAccount = (props) => {
         const updatedUser = {
             id: userID,
         }
-        fetch(`http://localhost:3000/delete_account`, {
+        fetch(`https://tip-out-api.herokuapp.com/delete_account`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

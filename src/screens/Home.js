@@ -29,7 +29,7 @@ const Home = (props) => {
             pauseOnHover: false
         })
         let userID = store.get('user').id
-        fetch(`http://localhost:3000/users/${userID}`)
+        fetch(`https://tip-out-api.herokuapp.com/users/${userID}`)
             .then(resp => resp.json())
             .then(data => {
                 updateShifts(data)
@@ -41,7 +41,7 @@ const Home = (props) => {
     //User Log Out
     const handleLogOut = () => {
         const userName = store.get('user').name
-        fetch("http://localhost:3000/logout")
+        fetch("https://tip-out-api.herokuapp.com/logout")
             .then(resp => resp.json())
             .then(data => {
                 history.push("/")
@@ -108,7 +108,7 @@ const Home = (props) => {
             pay_total: shiftTips,
             shift_comments: shiftComments
         }
-        fetch('http://localhost:3000/add_shift', {
+        fetch('https://tip-out-api.herokuapp.com/add_shift', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ const Home = (props) => {
             shiftType,
             shiftDate
         }
-        fetch('http://localhost:3000/delete_shift', {
+        fetch('https://tip-out-api.herokuapp.com/delete_shift', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ const Home = (props) => {
     const updateShiftsHelper = () => {
         setShifts([['x', 'night', 'day']])
         let userID = store.get('user').id
-        fetch(`http://localhost:3000/users/${userID}`)
+        fetch(`https://tip-out-api.herokuapp.com/users/${userID}`)
             .then(resp => resp.json())
             .then(data => {
                 updateShifts(data)
@@ -213,7 +213,7 @@ const Home = (props) => {
     //Helper Method to Update Current User
     const updateUserData = () => {
         let userID = store.get('user').id
-        fetch(`http://localhost:3000/users/${userID}`)
+        fetch(`https://tip-out-api.herokuapp.com/users/${userID}`)
             .then(resp => resp.json())
             .then(data => {
                 setUserData(data)
