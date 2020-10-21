@@ -18,6 +18,10 @@ Users can:
 
 - Back-End: Ruby on Rails, PostGres
 - Front-End: React, JavaScript, HTML, CSS
+- Material UI: styling for forms and buttons
+- React Google Charts: display the tip chart
+- Toastify: notifications to display information 
+- Store2: store and maintain sessions for users 
 
 # Deployed App
     https://tip-out.netlify.app/
