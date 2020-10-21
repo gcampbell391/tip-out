@@ -46,7 +46,6 @@ function App() {
           })
         }
         else {
-          console.log(data.user)
           store('user', data.user)
           setEmail('')
           setPassword('')

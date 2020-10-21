@@ -4,8 +4,6 @@ import React from 'react'
 
 const EarningsStatistics = (props) => {
     const userData = props.userData
-
-    console.log(userData)
     return (
         <div>
             {/* Row 1 */}

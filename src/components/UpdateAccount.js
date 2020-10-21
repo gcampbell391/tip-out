@@ -115,7 +115,6 @@ const UpdateAccount = (props) => {
 
     //Handles User Update Password
     const submitNewPassword = (oldPassword, newPassword) => {
-        console.log(oldPassword, newPassword)
         let userID = store.get('user').id
         const updatedUser = {
             id: userID,
@@ -131,7 +130,6 @@ const UpdateAccount = (props) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data.error) {
                     return toast.dark(`${data.error}`, {
                         autoClose: 2000,
@@ -152,7 +150,6 @@ const UpdateAccount = (props) => {
 
     //Handles User Delete Account
     const deleteAccount = () => {
-        console.log("Delete Account")
         let userID = store.get('user').id
         const updatedUser = {
             id: userID,

@@ -7,7 +7,7 @@ const SingleShift = (props) => {
 
     const [shiftDetailsOpen, setShiftDetailsOpen] = useState(false)
 
-    console.log(props.shift)
+
     return (
         <div className='single-shift-card'>
             <div className='single-shift-card-left'>

@@ -139,8 +139,6 @@ const Home = (props) => {
     const handleDeleteShift = (shiftType, shiftDate) => {
         //Converts shiftDate
         shiftDate = (parseInt(shiftDate.getMonth()) + 1) + "/" + shiftDate.getDate() + "/" + shiftDate.getFullYear().toString().charAt(2) + shiftDate.getFullYear().toString().charAt(3)
-        console.log('Shift Type: ', shiftType)
-        console.log('Shift Date: ', shiftDate)
         const shift = {
             userID: store.get('user').id,
             shiftType,
@@ -155,7 +153,6 @@ const Home = (props) => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data.status) {
                     toast.dark(`${data.status}`, {
                         autoClose: 3000,

@@ -65,7 +65,6 @@ const SignUpForm = () => {
             })
         }
         else {
-            console.log(name, email, password)
             toast.dark("Creating Account...", {
                 autoClose: 3000,
                 pauseOnHover: false
@@ -84,7 +83,6 @@ const SignUpForm = () => {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
                     if (data.status === '401') {
                         toast.dark("⚠️ Creating Account Failed...Please Try Again", {
                             autoClose: 3000,
